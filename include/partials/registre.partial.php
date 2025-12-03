@@ -49,6 +49,29 @@
                 <input type="radio" id="elefante" name="animal" value="elefante">
                 <label for="elefante">Elefante</label>
 
+                <br><br>
+
+                <label>Color Registre:</label>
+                <input type="radio" id="Roig" name="color" value="Roig">
+                <label for="Roig">Roig</label>
+
+                <input type="radio" id="Blau" name="color" value="Blau">
+                <label for="Blau">Blau</label>
+
+                <br><br>
+
+                <label for="puntuacio">Puntuació de la pagina (1-5):</label>
+                <input type="number" id="puntuacio" name="puntuacio" min="1" max="5" value="1">
+
+                <br><br>
+
+                <label for="multiplicador">Multiplicador:</label>
+                <input type="range" id="multiplicador" name="multiplicador" min="1" max="100" value="1"
+                    oninput="valorMultiplicador.value = this.value">
+                <output id="valorMultiplicador">1</output>
+
+                <br><br>
+
                 <button type="reset">Reset</button>
                 <button type="submit" id="submit" value="Enviar">Enviar</button>
             </fieldset>

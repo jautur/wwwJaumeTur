@@ -1,0 +1,150 @@
+/* -------- BODY Y ESTRUCTURA -------- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f0f0;
+    text-align: center;
+}
+
+#registre,
+#contacte,
+#proccRegistre,
+#proccContacte {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #f0c0c0;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#inici,
+#apadrina {
+    max-width: 80%;
+    margin: 40px auto;
+    padding: 20px;
+    background: #f0c0c0;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* -------- HEADER, NAV Y FOOTER -------- */
+header,
+footer,
+nav {
+    background: #992b2b;
+    padding: 10px;
+    text-align: center;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li a {
+    color: black;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 10px;
+}
+
+/* -------- ENCABEZADO -------- */
+h1 {
+    margin-bottom: 20px;
+    color: #ffffff;
+    size: 10%;
+}
+
+/* -------- FORMULARIO -------- */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="tel"],
+form select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+form input[type="text"]:required,
+form input[type="email"]:required,
+form input[type="password"]:required {
+    border-color: red;
+}
+
+/* -------- RADIO BUTTONS -------- */
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* -------- BOTONES -------- */
+form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+form button[type="submit"] {
+    background-color: #6fbf73;
+    color: white;
+}
+
+form button[type="reset"] {
+    background-color: #707070;
+    color: white;
+}
+
+/* -------- BACKGROUND BORROSO -------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+html::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/fons.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: blur(10px);
+    z-index: -1;
+}
