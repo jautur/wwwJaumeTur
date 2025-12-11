@@ -148,3 +148,31 @@ html::before {
     filter: blur(10px);
     z-index: -1;
 }
+
+/* -------- TAULA DADES DE L'ANIMAL -------- */
+.taula-animal {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.taula-animal th {
+    background-color: #aed4e6;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #000;
+}
+
+.taula-animal td {
+    border: 1px solid #000;
+    padding: 10px;
+    background-color: #e2f0f7;
+}
+
+.taula-animal .col-titol {
+    background-color: #f7c6d9;
+    font-weight: bold;
+    width: 180px;
+}

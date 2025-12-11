@@ -43,7 +43,7 @@
                 </select>
 
                 <label>Animal:</label>
-                <input type="radio" id="gorila" name="animal" value="gorila" required>
+                <input type="radio" id="gorila" name="animal" value="gorila">
                 <label for="gorila">Gorila</label>
 
                 <input type="radio" id="jaguar" name="animal" value="jaguar">
@@ -80,6 +80,20 @@
                 <output id="valorMultiplicador">1</output>
 
                 <br><br>
+            </fieldset>
+
+            <fieldset>
+                <label for="animalDelMes">Animal en perill del Mes:</label><br>
+                <input type="checkbox" name="noms[]" value="A">Elefant africà del bosc <br>
+                <input type="checkbox" name="noms[]" value="B">Tortola Valenciana<br>
+                <input type="checkbox" name="noms[]" value="C">Colibrí del sur<br>
+                <input type="checkbox" name="noms[]" value="D">Dofí volador<br>
+                <input type="checkbox" name="noms[]" value="E">Pangolí del llevant<br>
+                <input type="checkbox" name="noms[]" value="F">Lim go home<br>
+
+            </fieldset>
+
+            <fieldset>
 
                 <button type="reset">Reset</button>
                 <button type="submit" id="submit" value="Enviar">Enviar</button>
