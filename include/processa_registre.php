@@ -196,7 +196,8 @@ $imgSrc1 = $imatgesAnimals[$animal] ?? 'img/default.png';
                     <?php endforeach; ?>
                 </div>
             <?php else: ?>
-                <p><span style="color:green;"> --cap seleccionat--</span></p>
+                <p><span style="color:green;"> --valor buit--</span></p>
+                <img src="img/default.png" width="300" alt="Sense animal del mes">
             <?php endif; ?>
         </fieldset>
 

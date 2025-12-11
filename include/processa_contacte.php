@@ -10,7 +10,7 @@ function mostraValor($valor)
 }
 
 $paraules = explode(" ", $missatge);
-$paraulesClau = ['animal', 'apadrinar', 'donacio', 'voluntari'];
+$paraulesClau = ['animal', 'apadrinar', 'donacio', 'voluntari', 'salvar', 'proteccio', 'perill'];
 ?>
 
 <link rel="stylesheet" href="css/contacte.css">
@@ -22,21 +22,39 @@ $paraulesClau = ['animal', 'apadrinar', 'donacio', 'voluntari'];
     <p><strong>Assumpte:</strong> <?= mostraValor($assumpte) ?></p>
     <p><strong>Missatge:</strong></p>
 
-    <ul class="paraules">
-        <?php foreach ($paraules as $paraula):
-            $classe = 'paraula-normal';
+    <?php
+    $numParaules = count($paraules);
+    $dimensio = ceil(sqrt($numParaules));
+    ?>
 
-            if (in_array(strtolower($paraula), $paraulesClau)) {
-                $classe = 'paraula-clau';
-            }
+    <table class="taula-paraules">
+        <?php
+        $index = 0;
+        for ($fila = 0; $fila < $dimensio; $fila++):
+            echo "<tr>";
+            for ($col = 0; $col < $dimensio; $col++):
+                if ($index < $numParaules) {
+                    $paraula = $paraules[$index];
+                    $classe = 'paraula-normal';
+                    if (in_array(strtolower($paraula), $paraulesClau)) {
+                        $classe = 'paraula-clau';
+                    }
 
-            if (strlen($paraula) >= 10) {
-                $classe = 'paraula-llarga';
-            }
+                    if (mb_strlen($paraula) >= 10) {
+                        $classe = 'paraula-llarga';
+                    }
+
+                    echo "<td class='$classe'>" . htmlspecialchars($paraula) . "</td>";
+                } else {
+                    echo "<td></td>";
+                }
+                $index++;
+            endfor;
+            echo "</tr>";
+        endfor;
         ?>
-            <li class="<?= $classe ?>"><?= htmlspecialchars($paraula) ?></li>
-        <?php endforeach; ?>
-    </ul>
+    </table>
+
 
     <p><a href="/wwwJaumeTur/?apartat=contacte">Tornar enrere</a></p>
 </section>
