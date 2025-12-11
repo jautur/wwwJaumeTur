@@ -33,6 +33,15 @@
                     <option value="anual">Anual</option>
                 </select>
 
+                <label for="continent">Continent:</label>
+                <select name="continent" id="continent">
+                    <option value="Africa">Àfrica</option>
+                    <option value="Amèrica">Amèrica</option>
+                    <option value="Àsia">Àsia</option>
+                    <option value="Europa">Europa</option>
+                    <option value="Oceania">Oceania</option>
+                </select>
+
                 <label>Animal:</label>
                 <input type="radio" id="gorila" name="animal" value="gorila" required>
                 <label for="gorila">Gorila</label>

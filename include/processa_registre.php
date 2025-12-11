@@ -6,6 +6,7 @@ $passwd = trim($_POST['passwd'] ?? '');
 $tlf = trim($_POST['tlf'] ?? '');
 $poblacio = trim($_POST['poblacio'] ?? '');
 $donacio = $_POST['donacio'] ?? '';
+$continent = $_POST['continent'] ?? '';
 $animal = $_POST['animal'] ?? '';
 $color = $_POST['color'] ?? '';
 $puntuacio = intval($_POST['puntuacio'] ?? 1);
@@ -13,7 +14,7 @@ $multiplicador = intval($_POST['multiplicador'] ?? 1);
 
 function mostraValor($valor)
 {
-    return !empty($valor) ? htmlspecialchars($valor) : '<span style="color:green;">Predeterminat (Verd)</span>';
+    return !empty($valor) ? htmlspecialchars($valor) : '<span style="color:green;">Predeterminat</span>';
 }
 
 $puntuacioFinal = $puntuacio * $multiplicador;
@@ -53,6 +54,7 @@ $cssLink = match ($color) {
         <p><strong>Telèfon:</strong> <?= mostraValor($tlf) ?></p>
         <p><strong>Població:</strong> <?= mostraValor($poblacio) ?></p>
         <p><strong>Freqüència de donació:</strong> <?= mostraValor($donacio) ?></p>
+        <p><strong>Continent:</strong> <?= mostraValor($continent) ?></p>
         <p><strong>Animal:</strong> <?= mostraValor($animal) ?></p>
         <img src="<?= $imgSrc ?>" alt="Animal seleccionat" width="300">
         <p><strong>Puntuació:</strong> <?= $puntuacio ?> x <?= $multiplicador ?> = <?= $puntuacioFinal ?></p>
