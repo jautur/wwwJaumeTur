@@ -10,19 +10,10 @@ body {
 #registre,
 #contacte,
 #proccRegistre,
-#proccContacte {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #d8f0c0;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
+#proccContacte,
 #inici,
 #apadrina {
-    max-width: 80%;
-    margin: 40px auto;
+    margin: 40px 30px;
     padding: 20px;
     background: #d8f0c0;
     border-radius: 20px;
@@ -63,6 +54,16 @@ h1 {
     margin-bottom: 20px;
     color: #ffffff;
     size: 10%;
+}
+
+/* -------- FIELDSET -------- */
+fieldset {
+    border: 2px solid #a8ce81;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 0 auto;
+    width: 65%;
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 /* -------- FORMULARIO -------- */
@@ -176,9 +177,14 @@ html::before {
     font-weight: bold;
     width: 180px;
 }
+
 .taula-paraules {
     border-collapse: collapse;
     margin-top: 10px;
+    table-layout: auto;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .taula-paraules td {
@@ -186,5 +192,3 @@ html::before {
     padding: 8px 12px;
     text-align: center;
 }
-
-
