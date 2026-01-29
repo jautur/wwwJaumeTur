@@ -95,7 +95,7 @@ $imatgesAnimalMes = [
 $cssLink = match ($color) {
     'Roig' => 'css/estilRoig.css',
     'Blau' => 'css/estilBlau.css',
-    default => 'css/estilperdefecte.css'
+    default => 'css/estils.css'
 };
 
 $imgSrc1 = $imatgesAnimals[$animal] ?? 'img/default.png';
@@ -170,8 +170,8 @@ $imgSrc1 = $imatgesAnimals[$animal] ?? 'img/default.png';
 
             <div class="imatges-repetides">
                 <?php for ($i = 0; $i < $puntuacioFinal; $i++): ?>
-                    <img src="img/punts.png" alt="Punt" width="30">
-                <?php endfor; ?>
+                        <img src="img/punts.png" alt="Punt" width="30">
+                    <?php endfor; ?>
             </div>
 
             <p><strong>Color d'estil seleccionat:</strong> <?= mostraValor($color) ?></p>
@@ -189,8 +189,8 @@ $imgSrc1 = $imatgesAnimals[$animal] ?? 'img/default.png';
                         $imgAnimal = $imatgesAnimalMes[$codi] ?? 'img/default.png';
                         ?>
                         <div class="animal-mes">
-                            <img src="<?= htmlspecialchars($imgAnimal) ?>" alt="<?= htmlspecialchars($nomAnimal) ?>"
-                                width="150">
+                        <img src="<?= htmlspecialchars($imgAnimal) ?>" alt="<?= htmlspecialchars($nomAnimal) ?>"
+                            width="150">
                             <p><?= htmlspecialchars($nomAnimal) ?></p>
                         </div>
                     <?php endforeach; ?>

@@ -7,7 +7,7 @@
     } else {
         ?>
 
-        <form id="formulari" class="form-grid" method="post" action="/wwwJaumeTur/index.php?apartat=contacte">
+    <form id="formulari" class="form-grid" method="post" action="?apartat=contacte">
             <fieldset>
                 <label for="nom">Nom:</label>
                 <input type="text" id="nom" name="nom" maxlength="20" required>

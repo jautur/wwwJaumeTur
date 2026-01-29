@@ -13,10 +13,10 @@ $path = __DIR__ . '/include/partials/' . $apartat . '.partial.php';
 
 <body>
     <header>
-        <?php include 'include/partials/cap.partial.php'; ?>
+        <?php include __DIR__ . '/include/partials/cap.partial.php'; ?>
     </header>
     <nav>
-        <?php include 'include/partials/menu.partial.php'; ?>
+        <?php include __DIR__ . '/include/partials/menu.partial.php'; ?>
     </nav>
 
     <main>
@@ -25,7 +25,7 @@ $path = __DIR__ . '/include/partials/' . $apartat . '.partial.php';
     </main>
 
     <footer>
-        <?php include 'include/partials/peu.partial.php'; ?>
+        <?php include __DIR__ . '/include/partials/peu.partial.php'; ?>
     </footer>
 
 </body>

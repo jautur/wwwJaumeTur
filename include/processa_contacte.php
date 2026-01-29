@@ -13,7 +13,7 @@ $paraules = explode(" ", $missatge);
 $paraulesClau = ['animal', 'apadrinar', 'donacio', 'voluntari', 'salvar', 'proteccio', 'perill'];
 ?>
 
-<link rel="stylesheet" href="css/contacte.css">
+<link rel="stylesheet" href="../css/contacte.css">
 
 <section id="proccContacte">
     <h3>Resultat del Contacte</h3>
@@ -56,5 +56,5 @@ $paraulesClau = ['animal', 'apadrinar', 'donacio', 'voluntari', 'salvar', 'prote
     </table>
 
 
-    <p><a href="/wwwJaumeTur/?apartat=contacte">Tornar enrere</a></p>
+    <p><a href="../?apartat=contacte">Tornar enrere</a></p>
 </section>

@@ -6,7 +6,7 @@
         include __DIR__ . '/../processa_registre.php';
     } else {
         ?>
-        <form id="formulari" class="form-grid" method="post" action="/wwwJaumeTur/index.php?apartat=registre">
+    <form id="formulari" class="form-grid" method="post" action="?apartat=registre">
             <fieldset>
                 <label for="nom">Nom:</label>
                 <input type="text" id="nom" name="nom" maxlength="20" required>
