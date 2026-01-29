@@ -67,23 +67,24 @@ fieldset {
 }
 
 /* -------- FORMULARIO -------- */
-form {
+
+form#formulari {
     display: flex;
     flex-direction: column;
     gap: 15px;
     text-align: left;
 }
 
-form label {
+form#formulari label {
     font-weight: bold;
     margin-bottom: 15px;
 }
 
-form input[type="text"],
-form input[type="email"],
-form input[type="password"],
-form input[type="tel"],
-form select {
+form#formulari input[type="text"],
+form#formulari input[type="email"],
+form#formulari input[type="password"],
+form#formulari input[type="tel"],
+form#formulari select {
     width: 100%;
     padding: 10px;
     margin: 5px;
@@ -91,9 +92,9 @@ form select {
     box-sizing: border-box;
 }
 
-form input[type="text"]:required,
-form input[type="email"]:required,
-form input[type="password"]:required {
+form#formulari input[type="text"]:required,
+form#formulari input[type="email"]:required,
+form#formulari input[type="password"]:required {
     border-color: red;
 }
 

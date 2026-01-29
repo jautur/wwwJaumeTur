@@ -2,12 +2,13 @@
     <h1>Contacte</h1>
 
     <?php
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['form']) && $_POST['form'] === 'contacte')) {
         include __DIR__ . '/../processa_contacte.php';
     } else {
         ?>
 
     <form id="formulari" class="form-grid" method="post" action="?apartat=contacte">
+        <input type="hidden" name="form" value="contacte">
             <fieldset>
                 <label for="nom">Nom:</label>
                 <input type="text" id="nom" name="nom" maxlength="20" required>

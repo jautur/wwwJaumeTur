@@ -13,7 +13,18 @@ $paraules = explode(" ", $missatge);
 $paraulesClau = ['animal', 'apadrinar', 'donacio', 'voluntari', 'salvar', 'proteccio', 'perill'];
 ?>
 
-<link rel="stylesheet" href="../css/contacte.css">
+<?php
+$cssToUse = 'css/contacte.css';
+if (!empty($_POST['color'])) {
+    if ($_POST['color'] === 'Roig') {
+        $cssToUse = 'css/estilRoig.css';
+    } elseif ($_POST['color'] === 'Blau') {
+        $cssToUse = 'css/estilBlau.css';
+    }
+}
+?>
+
+<link rel="stylesheet" href="<?= htmlspecialchars($cssToUse) ?>">
 
 <section id="proccContacte">
     <h3>Resultat del Contacte</h3>
@@ -56,5 +67,6 @@ $paraulesClau = ['animal', 'apadrinar', 'donacio', 'voluntari', 'salvar', 'prote
     </table>
 
 
-    <p><a href="../?apartat=contacte">Tornar enrere</a></p>
+    <?php $retApartat = $_POST['apartat'] ?? 'contacte'; ?>
+    <p><a href="../?apartat=<?= htmlspecialchars($retApartat) ?>">Tornar enrere</a></p>
 </section>

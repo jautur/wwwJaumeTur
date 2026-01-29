@@ -1,15 +1,29 @@
 <?php
 $apartat = $_GET['apartat'] ?? 'inici';
+if (!empty($_POST['apartat'])) {
+    $apartat = $_POST['apartat'];
+}
+
 $path = __DIR__ . '/include/partials/' . $apartat . '.partial.php';
+
+$cssSelecionat = 'css/estils.css';
+if (!empty($_POST['color'])) {
+    $c = $_POST['color'];
+    if ($c === 'Roig') {
+        $cssSelecionat = 'css/estilRoig.css';
+    } elseif ($c === 'Blau') {
+        $cssSelecionat = 'css/estilBlau.css';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang='es'>
 
-<head>
+    <head>
     <meta charset='UTF-8'>
-    <link rel='stylesheet' href='css/estils.css'>
+    <link rel='stylesheet' href='<?php echo htmlspecialchars($cssSelecionat); ?>'>
     <title>Web</title>
-</head>
+    </head>
 
 <body>
     <header>
