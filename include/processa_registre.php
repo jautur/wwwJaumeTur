@@ -13,6 +13,13 @@ $puntuacio = intval($_POST['puntuacio'] ?? 1);
 $multiplicador = intval($_POST['multiplicador'] ?? 1);
 $animalDelMes = $_POST['noms'] ?? [];
 
+if (!empty($email)) {
+    if (file_exists(__DIR__ . '/funcions.php')) {
+        include_once __DIR__ . '/funcions.php';
+        registreAccionsUsuari('REGISTRE', $email, __DIR__ . '/../log/accionsUsuari.log');
+    }
+}
+
 function mostraValor($valor)
 {
     if (is_array($valor)) {

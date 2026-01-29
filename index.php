@@ -1,8 +1,12 @@
 <?php
+require_once __DIR__ . '/include/funcions.php';
+
 $apartat = $_GET['apartat'] ?? 'inici';
 if (!empty($_POST['apartat'])) {
     $apartat = $_POST['apartat'];
 }
+
+registreNavegacio($apartat, __DIR__ . '/log/navegacio.log');
 
 $path = __DIR__ . '/include/partials/' . $apartat . '.partial.php';
 

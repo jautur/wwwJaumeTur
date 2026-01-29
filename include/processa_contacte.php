@@ -11,6 +11,13 @@ function mostraValor($valor)
 
 $paraules = explode(" ", $missatge);
 $paraulesClau = ['animal', 'apadrinar', 'donacio', 'voluntari', 'salvar', 'proteccio', 'perill'];
+
+if (!empty($email)) {
+    if (file_exists(__DIR__ . '/funcions.php')) {
+        include_once __DIR__ . '/funcions.php';
+        registreAccionsUsuari('CONTACTE', $email, __DIR__ . '/../log/accionsUsuari.log');
+    }
+}
 ?>
 
 <?php
