@@ -24,7 +24,7 @@ body {
 header,
 footer,
 nav {
-    background: #992b2b;
+    background: #ce8181;
     padding: 10px;
     text-align: center;
     border-radius: 20px;
@@ -33,6 +33,58 @@ nav {
     margin-left: 30px;
     margin-right: 30px;
 }
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0 0 10px 0;
+    width: 100%;
+    text-align: center;
+}
+
+.data-css {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+    align-items: stretch; /* ensure child boxes have equal height */
+    flex-wrap: wrap;
+}
+
+.data-css .divdata,
+.data-css .divcss {
+    flex: 0 0 48%; /* sit side-by-side when there is space */
+    min-width: 260px;
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 8px;
+    background-color: rgba(255,255,255,0.66);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; /* allow content to stack and stretch */
+    justify-content: center; /* center content vertically */
+    align-items: center; /* center content horizontally */
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .data-css {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .data-css .divdata,
+    .data-css .divcss {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
 
 nav ul {
     display: flex;
@@ -49,6 +101,33 @@ nav ul li a {
     border-radius: 10px;
 }
 
+/* Header CSS form: keep controls and submit button on one line when possible */
+form#formulari-css {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap; /* prefer no wrap; allow parent to expand */
+    justify-content: center;
+    font-size: 13px;
+}
+
+form#formulari-css input[type="radio"] {
+    margin: 0 6px 0 0;
+}
+
+form#formulari-css button {
+    white-space: nowrap;
+    padding: 6px 8px;
+    font-size: 13px;
+}
+
+@media (max-width: 520px) {
+    form#formulari-css {
+        flex-wrap: wrap; /* allow wrap on very small screens */
+        justify-content: flex-start;
+    }
+}
+
 /* -------- ENCABEZADO -------- */
 h1 {
     margin-bottom: 20px;
@@ -58,7 +137,7 @@ h1 {
 
 /* -------- FIELDSET -------- */
 fieldset {
-    border: 2px solid #992b2b;
+    border: 2px solid #ce8181;
     border-radius: 15px;
     padding: 25px;
     margin: 0 auto;
@@ -67,6 +146,7 @@ fieldset {
 }
 
 /* -------- FORMULARIO -------- */
+
 form#formulari {
     display: flex;
     flex-direction: column;
@@ -120,7 +200,7 @@ form button {
 }
 
 form button[type="submit"] {
-    background-color: #6fbf73;
+    background-color: #bf6f6f;
     color: white;
 }
 
@@ -159,7 +239,7 @@ html::before {
 }
 
 .taula-animal th {
-    background-color: #eeb9b9;
+    background-color: #e6aeae;
     padding: 10px;
     text-align: center;
     font-size: 18px;
@@ -169,11 +249,26 @@ html::before {
 .taula-animal td {
     border: 1px solid #000;
     padding: 10px;
-    background-color: #ffffff;
+    background-color: #e2f0f7;
 }
 
 .taula-animal .col-titol {
-    background-color: #f7c6d9;
+    background-color: #f7c6c6;
     font-weight: bold;
     width: 180px;
+}
+
+.taula-paraules {
+    border-collapse: collapse;
+    margin-top: 10px;
+    table-layout: auto;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.taula-paraules td {
+    border: 1px solid #999;
+    padding: 6px 10px;
+    text-align: center;
 }
