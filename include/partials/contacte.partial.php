@@ -1,13 +1,7 @@
 <section id="contacte">
     <h1>Contacte</h1>
 
-    <?php
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['form']) && $_POST['form'] === 'contacte')) {
-        include __DIR__ . '/../processa_contacte.php';
-    } else {
-        ?>
-
-    <form id="formulari" class="form-grid" method="post" action="?apartat=contacte">
+    <form id="formulari" class="form-grid" method="post" action="include/processa_contacte.php">
         <input type="hidden" name="form" value="contacte">
             <fieldset>
                 <label for="nom">Nom:</label>
@@ -28,7 +22,5 @@
                 <button type="submit" id="submit" value="Enviar">Enviar</button>
             </fieldset>
         </form>
-        <?php
-    }
-    ?>
+        
 </section>

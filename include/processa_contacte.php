@@ -18,15 +18,12 @@ if (!empty($email)) {
         registreAccionsUsuari('CONTACTE', $email, __DIR__ . '/../log/accionsUsuari.log');
     }
 }
-?>
-
-<?php
 $cssToUse = 'css/contacte.css';
 if (!empty($_POST['color'])) {
     if ($_POST['color'] === 'Roig') {
         $cssToUse = 'css/estilRoig.css';
     } elseif ($_POST['color'] === 'Blau') {
-        $cssToUse = 'css/estilBlau.css';
+        $cssToUse = '../css/estilBlau.css';
     }
 }
 ?>
