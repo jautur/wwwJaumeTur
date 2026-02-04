@@ -1,7 +1,7 @@
 <section id="registre">
     <h1>Registre</h1>
 
-        <form id="formulari" class="form-grid" method="post" action="include/processa_registre.php">
+        <form id="formulari" class="form-grid" method="post" action="?apartat=/processa_registre.php">
             <input type="hidden" name="form" value="registre">
             <fieldset>
                 <label for="nom">Nom:</label>

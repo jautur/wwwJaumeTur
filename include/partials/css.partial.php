@@ -8,7 +8,11 @@
     <input type="radio" id="Blau" name="color" value="Blau" 
     <?php if (!empty($_POST['color']) && $_POST['color'] === 'Blau') echo 'checked'; ?>>
     <label for="Blau">Blau</label>
-    
+
+    <input type="radio" id="perDefecte" name="color" value="perDefecte" 
+    <?php if (!empty($_POST['color']) && $_POST['color'] === 'perDefecte') echo 'checked'; ?>>
+    <label for="perDefecte">Per defecte</label>
+
     <button type="submit" id="submit" value="Canvia">Canvia</button>
 
     <?php

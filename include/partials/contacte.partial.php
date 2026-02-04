@@ -1,7 +1,7 @@
 <section id="contacte">
     <h1>Contacte</h1>
 
-    <form id="formulari" class="form-grid" method="post" action="include/processa_contacte.php">
+    <form id="formulari" class="form-grid" method="post" action="?apartat=/processa_contacte.php">
         <input type="hidden" name="form" value="contacte">
             <fieldset>
                 <label for="nom">Nom:</label>

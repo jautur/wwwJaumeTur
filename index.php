@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . '/include/funcions.php';
 
 $apartat = $_GET['apartat'] ?? 'inici';
@@ -8,7 +9,7 @@ if (!empty($_POST['apartat'])) {
 
 registreNavegacio($apartat, __DIR__ . '/log/navegacio.log');
 
-$path = __DIR__ . '/include/partials/' . $apartat . '.partial.php';
+$path = __DIR__ . '/include' . $apartat;
 
 $cssSelecionat = 'css/estils.css';
 if (!empty($_POST['color'])) {

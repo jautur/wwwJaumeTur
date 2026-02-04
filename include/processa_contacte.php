@@ -1,4 +1,5 @@
 <?php
+session_start();
 $nom = trim($_POST['nom'] ?? '');
 $email = trim($_POST['email'] ?? '');
 $assumpte = trim($_POST['assumpte'] ?? '');
@@ -19,16 +20,16 @@ if (!empty($email)) {
     }
 }
 $cssToUse = 'css/contacte.css';
-if (!empty($_POST['color'])) {
-    if ($_POST['color'] === 'Roig') {
-        $cssToUse = 'css/estilRoig.css';
-    } elseif ($_POST['color'] === 'Blau') {
-        $cssToUse = '../css/estilBlau.css';
-    }
-}
+
+$cssSelecionat = match ($color) {
+    'Roig' => 'css/estilRoig.css',
+    'Blau' => 'css/estilBlau.css',
+    'perDefecte' => 'css/estils.css',
+    default => 'css/estils.css'
+};
 ?>
 
-<link rel="stylesheet" href="<?= htmlspecialchars($cssToUse) ?>">
+<link rel="stylesheet" href="<?= htmlspecialchars($cssSelecionat) ?>">
 
 <section id="proccContacte">
     <h3>Resultat del Contacte</h3>
