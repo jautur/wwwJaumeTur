@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $nom = trim($_POST['nom'] ?? '');
 $email = trim($_POST['email'] ?? '');
 $assumpte = trim($_POST['assumpte'] ?? '');
@@ -19,17 +21,12 @@ if (!empty($email)) {
         registreAccionsUsuari('CONTACTE', $email, __DIR__ . '/../log/accionsUsuari.log');
     }
 }
-$cssToUse = 'css/contacte.css';
+$cssTaula = 'css/contacte.css';
 
-$cssSelecionat = match ($color) {
-    'Roig' => 'css/estilRoig.css',
-    'Blau' => 'css/estilBlau.css',
-    'perDefecte' => 'css/estils.css',
-    default => 'css/estils.css'
-};
+
 ?>
 
-<link rel="stylesheet" href="<?= htmlspecialchars($cssSelecionat) ?>">
+<link rel="stylesheet" href="<?= htmlspecialchars($cssTaula) ?>">
 
 <section id="proccContacte">
     <h3>Resultat del Contacte</h3>

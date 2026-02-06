@@ -9,16 +9,29 @@ if (!empty($_POST['apartat'])) {
 
 registreNavegacio($apartat, __DIR__ . '/log/navegacio.log');
 
-$path = __DIR__ . '/include' . $apartat;
+$ruta = match ($apartat) {
+    'inici' => '/include/partials/inici.partial.php',
+    'registre' => '/include/partials/registre.partial.php',
+    'contacte' => '/include/partials/contacte.partial.php',
+    'apadrina' => '/include/partials/apadrina.partial.php',
+    'processa_registre' => '/include/processa_registre.php',
+    'processa_contacte' => '/include/processa_contacte.php',
+    default => '/include/partials/inici.partial.php',
+};
+
+$path = __DIR__ . $ruta;
+
+if (isset($_POST['color'])) {
+    $_SESSION['color'] = $_POST['color'];
+}
+
+$colorSession = $_SESSION['color'] ?? 'perDefecte';
 
 $cssSelecionat = 'css/estils.css';
-if (!empty($_POST['color'])) {
-    $c = $_POST['color'];
-    if ($c === 'Roig') {
-        $cssSelecionat = 'css/estilRoig.css';
-    } elseif ($c === 'Blau') {
-        $cssSelecionat = 'css/estilBlau.css';
-    }
+if ($colorSession === 'Roig') {
+    $cssSelecionat = 'css/estilRoig.css';
+} elseif ($colorSession === 'Blau') {
+    $cssSelecionat = 'css/estilBlau.css';
 }
 ?>
 <!DOCTYPE html>

@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $nom = trim($_POST['nom'] ?? '');
 $cognoms = trim($_POST['cognoms'] ?? '');
 $email = trim($_POST['email'] ?? '');
@@ -9,7 +11,7 @@ $poblacio = trim($_POST['poblacio'] ?? '');
 $donacio = $_POST['donacio'] ?? '';
 $continent = $_POST['continent'] ?? '';
 $animal = $_POST['animal'] ?? '';
-$color = $_POST['color'] ?? 'per defecte';
+$color = $_SESSION['color'] ?? $_POST['color'] ?? 'perDefecte';
 $puntuacio = intval($_POST['puntuacio'] ?? 1);
 $multiplicador = intval($_POST['multiplicador'] ?? 1);
 $animalDelMes = $_POST['noms'] ?? [];
@@ -103,7 +105,7 @@ $imatgesAnimalMes = [
 $cssSelecionat = match ($color) {
     'Roig' => 'css/estilRoig.css',
     'Blau' => 'css/estilBlau.css',
-    'perDefecte' => 'css/estils.css',
+    'perDefecte', 'per defecte' => 'css/estils.css',
     default => 'css/estils.css'
 };
 
