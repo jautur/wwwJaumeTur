@@ -35,9 +35,6 @@ function registreNavegacio(string $apartat, string $ruta): void
     $hora = $now->format('H:i:s');
     $text = sprintf("%d :: Accés a l'apartat %s el dia %s a l'hora %s", $numero, mb_strtoupper($apartat), $data, $hora);
 
-    // Afegir al fitxer amb bloqueig
-    file_put_contents($ruta, $text . PHP_EOL, FILE_APPEND | LOCK_EX);
-
     // Si el nombre de línies és múltiple de 10, fer backup
     if ($numero % 10 === 0) {
         $stamp = $now->format('Ymd_His');
@@ -68,5 +65,47 @@ function registreAccionsUsuari(string $accio, string $usuari, string $ruta): voi
     $hora = $now->format('H:i:s');
     $text = sprintf("L'usuari %s ha realitzat l'acció %s el dia %s a l'hora %s", $usuari, mb_strtoupper($accio), $data, $hora);
 
-    file_put_contents($ruta, $text . PHP_EOL, FILE_APPEND | LOCK_EX);
+}
+function insereixUsuari(string $nom, string $cognoms, string $correu, string $contrasenya): string
+{
+    $connexio = mysqli_connect("localhost", "root", "root", "BBDDwwwJaume");
+
+    if (!$connexio) {
+        return "error";
+    }
+
+    if (usuariExisteix($correu, $connexio)) {
+        mysqli_close($connexio);
+        return "usuariExisteix";
+    }
+
+    $img = "default.png";
+
+    if (empty($cognoms)) {
+        $sql = "INSERT INTO Usuaris (nom, correu, passwd, img, date)
+                VALUES ('$nom', '$correu', '$contrasenya', '$img', NOW())";
+    } else {
+        $sql = "INSERT INTO Usuaris (nom, cognoms, correu, passwd, img, date)
+                VALUES ('$nom', '$cognoms', '$correu', '$contrasenya', '$img', NOW())";
+    }
+
+    if (mysqli_query($connexio, $sql)) {
+        mysqli_close($connexio);
+        return "usuariInserit";
+    } else {
+        mysqli_close($connexio);
+        return "error";
+    }
+}
+
+function usuariExisteix(string $correu, $connexio): bool
+{
+    $sql = "SELECT id FROM Usuaris WHERE correu = '$correu'";
+    $resultat = mysqli_query($connexio, $sql);
+
+    if ($resultat && mysqli_num_rows($resultat) > 0) {
+        return true;
+    } else {
+        return false;
+    }
 }

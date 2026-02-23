@@ -16,6 +16,22 @@ $puntuacio = intval($_POST['puntuacio'] ?? 1);
 $multiplicador = intval($_POST['multiplicador'] ?? 1);
 $animalDelMes = $_POST['noms'] ?? [];
 
+require_once __DIR__ . '/funcions.php';
+
+$resultatInsercio = insereixUsuari($nom, $cognoms, $email, $passwd);
+
+switch ($resultatInsercio) {
+    case 'usuariExisteix':
+        $missatgeresultatInsercio = "L'usuari ja existia a la base de dades";
+        break;
+    case 'usuariInserit':
+        $missatgeresultatInsercio = "L'usuari s'ha inserit correctament";
+        break;
+    default:
+        $missatgeresultatInsercio = "L'usuari no s'ha inserit degut a un ERROR!!";
+        break;
+}
+
 if (!empty($email)) {
     if (file_exists(__DIR__ . '/funcions.php')) {
         include_once __DIR__ . '/funcions.php';
@@ -126,6 +142,7 @@ $imgSrc1 = $imatgesAnimals[$animal] ?? 'img/default.png';
 
         <fieldset>
             <h3>Resultat del Registre</h3>
+            <p><?= mostraValor($missatgeresultatInsercio) ?></p>
         </fieldset>
         <br>
 
