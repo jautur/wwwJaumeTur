@@ -109,3 +109,9 @@ function usuariExisteix(string $correu, $connexio): bool
         return false;
     }
 }
+
+function redirigeixErrorContrasenya()
+{
+    header("Location: ?apartat=registre&error=contrasenya");
+    die();
+}

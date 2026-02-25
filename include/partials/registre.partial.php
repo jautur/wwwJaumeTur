@@ -16,6 +16,15 @@
             <label for="passwd">Contrasenya:</label>
             <input type="password" id="passwd" name="passwd" maxlength="50" required>
 
+            <label for="passwd2">Confirmació Contrasenya:</label>
+            <input type="password" id="passwd2" name="passwd2" maxlength="50" required>
+
+            <?php if (isset($_GET['error']) && $_GET['error'] === 'contrasenya'): ?>
+                <p style="color:red; margin-top:5px;">
+                    Les contrasenyes no coincideixen
+                </p>
+            <?php endif; ?>
+
             <label for="tlf">Telèfon:</label>
             <input type="tel" id="tlf" name="tlf" maxlength="15">
 

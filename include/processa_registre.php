@@ -6,6 +6,7 @@ $nom = trim($_POST['nom'] ?? '');
 $cognoms = trim($_POST['cognoms'] ?? '');
 $email = trim($_POST['email'] ?? '');
 $passwd = trim($_POST['passwd'] ?? '');
+$passwd2 = trim($_POST['passwd2'] ?? '');
 $tlf = trim($_POST['tlf'] ?? '');
 $poblacio = trim($_POST['poblacio'] ?? '');
 $donacio = $_POST['donacio'] ?? '';
@@ -17,6 +18,10 @@ $multiplicador = intval($_POST['multiplicador'] ?? 1);
 $animalDelMes = $_POST['noms'] ?? [];
 
 require_once __DIR__ . '/funcions.php';
+
+if ($passwd !== $passwd2) {
+    redirigeixErrorContrasenya();
+}
 
 $resultatInsercio = insereixUsuari($nom, $cognoms, $email, $passwd);
 
