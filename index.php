@@ -38,16 +38,21 @@ if ($colorSession === 'Roig') {
 <!DOCTYPE html>
 <html lang='es'>
 
-    <head>
+<head>
     <meta charset='UTF-8'>
     <link rel='stylesheet' href='<?php echo htmlspecialchars($cssSelecionat); ?>'>
     <title>Web</title>
-    </head>
+</head>
 
 <body>
     <header>
         <?php include __DIR__ . '/include/partials/cap.partial.php'; ?>
     </header>
+    <?php if (isset($_SESSION['usuari']) && $_SESSION['usuari'] === 'admin@daw.com'): ?>
+        <nav class="divadmin">
+            <?php include __DIR__ . '/include/partials/admin.partial.php'; ?>
+        </nav>
+    <?php endif; ?>
     <nav>
         <?php include __DIR__ . '/include/partials/menu.partial.php'; ?>
     </nav>
