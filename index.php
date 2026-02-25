@@ -16,6 +16,7 @@ $ruta = match ($apartat) {
     'apadrina' => '/include/partials/apadrina.partial.php',
     'processa_registre' => '/include/processa_registre.php',
     'processa_contacte' => '/include/processa_contacte.php',
+    'processa_login' => '/include/processa_login.php',
     default => '/include/partials/inici.partial.php',
 };
 

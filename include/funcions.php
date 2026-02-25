@@ -100,7 +100,7 @@ function insereixUsuari(string $nom, string $cognoms, string $correu, string $co
 
 function usuariExisteix(string $correu, $connexio): bool
 {
-    $sql = "SELECT id FROM Usuaris WHERE correu = '$correu'";
+    $sql = "SELECT id FROM Usuaris WHERE LOWER(correu) = LOWER('$correu')";
     $resultat = mysqli_query($connexio, $sql);
 
     if ($resultat && mysqli_num_rows($resultat) > 0) {
@@ -110,8 +110,51 @@ function usuariExisteix(string $correu, $connexio): bool
     }
 }
 
+function passwdCorrecta(string $correu, string $passwd, $connexio): bool
+{
+    $sql = "SELECT passwd FROM Usuaris WHERE LOWER(correu) = LOWER('$correu')";
+    $resultat = mysqli_query($connexio, $sql);
+
+    if ($resultat && mysqli_num_rows($resultat) > 0) {
+        $row = mysqli_fetch_assoc($resultat);
+        return $row['passwd'] === $passwd;
+    } else {
+        return false;
+    }
+}
+
 function redirigeixErrorContrasenya()
 {
     header("Location: ?apartat=registre&error=contrasenya");
     die();
+}
+
+function redirigeixLoginValid()
+{
+    header("Location: ?apartat=inici&error=valid");
+    die();
+}
+function redirigeixLoginCorreu()
+    {
+        header("Location: ?apartat=inici&error=correu");
+        die();
+}
+function redirigeixLoginIncorrecte()
+{
+    header("Location: ?apartat=inici&error=incorrecte");
+    die();
+}
+function redirigeixLoginBuit()
+{
+    header("Location: ?apartat=inici&error=buit");
+    die();
+}
+
+function missatgeErrorLogin($error)
+{
+    if ($error === 'correu') {
+        echo '<p style="color:red; margin-top:5px;">No existeix cap usuari amb aquest email</p>';
+    } elseif ($error === 'incorrecte') {
+        echo '<p style="color:red; margin-top:5px;">L\'usuari o la contrasenya no és correcte</p>';
+    }
 }
