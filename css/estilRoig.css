@@ -275,3 +275,82 @@ html::before {
     padding: 6px 10px;
     text-align: center;
 }
+/* ===== APADRINA GRID - ROJO ===== */
+
+.animals {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.animal {
+    width: 300px;
+    background: #ffcdd2; /* Fondo rojo claro */
+    border: 2px solid #d32f2f; /* Borde rojo fuerte */
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(100, 0, 0, 0.25);
+    position: relative;
+}
+
+.animal-id {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #ffebee; /* Fondo ID */
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    border: 1px solid #b71c1c;
+    color: #b71c1c;
+}
+
+.animal h2 {
+    background: #b71c1c; /* Fondo título */
+    border: 2px solid #7f0000;
+    border-radius: 10px;
+    padding: 6px;
+    font-size: 16px;
+    margin-top: 20px;
+    color: #ffffff; /* Texto blanco */
+}
+
+.animal img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.nomcient {
+    font-size: 13px;
+    margin-top: 8px;
+    color: #7f0000;
+}
+
+.animal p {
+    background: #fff5f5; /* Fondo descripción */
+    border-radius: 10px;
+    padding: 8px;
+    font-size: 14px;
+    margin-top: 8px;
+    color: #000000;
+}
+
+.animal button {
+    margin-top: 10px;
+    background: #ef9a9a; /* Fondo botón */
+    border: 1px solid #d32f2f;
+    border-radius: 10px;
+    padding: 6px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #000000;
+}
+
+.animal button:hover {
+    background: #e57373;
+}

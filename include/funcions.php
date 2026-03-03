@@ -168,3 +168,92 @@ function missatgeErrorLogin($error)
         echo '<p style="color:red; margin-top:5px;">L\'usuari o la contrasenya no és correcte</p>';
     }
 }
+
+function mostraAnimals()
+{
+    $connexio = mysqli_connect("localhost", "root", "root", "BBDDwwwJaume");
+
+    if (!$connexio) {
+        echo '<p style="color:red;">Error de connexió amb la base de dades</p>';
+        return;
+    }
+
+    $consulta = "SELECT id, nomcomu, nomcient, descripcio, img, donacio, quantitat FROM Animal";
+    $resultat = mysqli_query($connexio, $consulta);
+
+    if (!$resultat) {
+        echo '<p style="color:red;">Error en la consulta</p>';
+        mysqli_close($connexio);
+        return;
+    }
+
+    echo "<div class='animals'>";
+
+    while ($fila = mysqli_fetch_assoc($resultat)) {
+
+        echo "<div class='animal'>";
+
+        echo "<div class='animal-id'>id: {$fila['id']}</div>";
+
+        echo "<h2>{$fila['nomcomu']}</h2>";
+
+        echo "<img src='{$fila['img']}' alt='{$fila['nomcomu']}' whidth='200px' height='200px'>";
+
+        echo "<p class='nomcient'><em>{$fila['nomcient']}</em></p>";
+
+        echo "<p>{$fila['descripcio']}</p>";
+
+        echo "<p><strong>Disponibles:</strong> {$fila['quantitat']}</p>";
+
+        echo "<button>Donació: {$fila['donacio']}€</button>";
+
+        mostraFormulariAnimal($fila['id']);  
+
+        echo "</div>";
+    }
+
+    echo "</div>";
+
+    mysqli_free_result($resultat);
+    mysqli_close($connexio);
+}
+
+function mostraFormulariAnimal($id)
+{
+    echo '
+    <form id="formAnimal'.$id.'" 
+          name="formAnimal'.$id.'" 
+          action="index.php?apartat=apadrina" 
+          method="POST">
+
+        <input type="hidden" 
+               id="idAnimal'.$id.'" 
+               name="idAnimal" 
+               value="'.$id.'">
+
+        <div>
+            <span>
+                <label for="quantitatAnimal'.$id.'">Quantitat:</label>
+            </span>
+            <span>
+                <input id="quantitatAnimal'.$id.'" 
+                       name="quantitatAnimal" 
+                       type="number" 
+                       min="0" 
+                       step="1" 
+                       required>
+            </span>
+        </div>
+
+        <div>
+            <span>
+                <button id="enviaFormAnimal'.$id.'" 
+                        name="envia" 
+                        type="submit">
+                        Afegeix al carret
+                </button>
+            </span>
+        </div>
+
+    </form>';
+}

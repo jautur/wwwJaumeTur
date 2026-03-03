@@ -1,5 +1,15 @@
 <?php
 session_start();
+
+if (isset($_POST['envia'])) {
+
+    $_SESSION['idAnimal'] = $_POST['idAnimal'];
+    $_SESSION['quantitatAnimal'] = $_POST['quantitatAnimal'];
+
+    header("Location: index.php?apartat=apadrina");
+    exit();
+}
+
 require_once __DIR__ . '/include/funcions.php';
 
 $apartat = $_GET['apartat'] ?? 'inici';
