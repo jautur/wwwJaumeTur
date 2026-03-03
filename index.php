@@ -17,6 +17,7 @@ $ruta = match ($apartat) {
     'processa_registre' => '/include/processa_registre.php',
     'processa_contacte' => '/include/processa_contacte.php',
     'processa_login' => '/include/processa_login.php',
+    'admin' => '/include/partials/admin.partial.php',
     default => '/include/partials/inici.partial.php',
 };
 
@@ -48,11 +49,6 @@ if ($colorSession === 'Roig') {
     <header>
         <?php include __DIR__ . '/include/partials/cap.partial.php'; ?>
     </header>
-    <?php if (isset($_SESSION['usuari']) && $_SESSION['usuari'] === 'admin@daw.com'): ?>
-        <nav class="divadmin">
-            <?php include __DIR__ . '/include/partials/admin.partial.php'; ?>
-        </nav>
-    <?php endif; ?>
     <nav>
         <?php include __DIR__ . '/include/partials/menu.partial.php'; ?>
     </nav>

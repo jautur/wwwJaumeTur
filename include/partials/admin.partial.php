@@ -1,6 +1,13 @@
-<body>
-    <h2 style="color:red; margin-top:5px;">
-        ADMINISTRADOR
-    </h2>
-    <img src="img/Admin.png" alt="ADMIN IMAGE" width="700px" height="200px">
-</body>
+<?php
+if (basename($_SERVER['PHP_SELF']) !== 'index.php') {
+    header('Location: ../index.php?apartat=admin');
+    exit;
+}
+
+include_once __DIR__ . '/../funcionsAdmin.php';
+?>
+
+<section id="apadrina">
+    <h1 style="color:red;">ADMINISTRACIÓ</h1>
+    <?php gestionaUsuaris(); ?>
+</section>

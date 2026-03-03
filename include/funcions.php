@@ -80,14 +80,19 @@ function insereixUsuari(string $nom, string $cognoms, string $correu, string $co
     }
 
     $img = "default.png";
+    $passwd = password_hash($contrasenya, PASSWORD_DEFAULT);
+    $iguals = password_verify($contrasenya, $passwd);
 
-    if (empty($cognoms)) {
-        $sql = "INSERT INTO Usuaris (nom, correu, passwd, img, date)
-                VALUES ('$nom', '$correu', '$contrasenya', '$img', NOW())";
-    } else {
-        $sql = "INSERT INTO Usuaris (nom, cognoms, correu, passwd, img, date)
-                VALUES ('$nom', '$cognoms', '$correu', '$contrasenya', '$img', NOW())";
+    if ($iguals === true) {
+        if (empty($cognoms)) {
+            $sql = "INSERT INTO Usuaris (nom, correu, passwd, img, date)
+                VALUES ('$nom', '$correu', '$passwd', '$img', NOW())";
+        } else {
+            $sql = "INSERT INTO Usuaris (nom, cognoms, correu, passwd, img, date)
+                VALUES ('$nom', '$cognoms', '$correu', '$passwd', '$img', NOW())";
+        }
     }
+
 
     if (mysqli_query($connexio, $sql)) {
         mysqli_close($connexio);
@@ -112,12 +117,17 @@ function usuariExisteix(string $correu, $connexio): bool
 
 function passwdCorrecta(string $correu, string $passwd, $connexio): bool
 {
-    $sql = "SELECT passwd FROM Usuaris WHERE LOWER(correu) = LOWER('$correu')";
+    // Recuperem el hash emmagatzemat per aquest correu i el comparem amb la contrasenya
+    // enviada pel formulari. No tornem a hash la contrasenya de l'usuari, ja que
+    // password_verify ja ho gestiona internament.
+    $correuEscapat = mysqli_real_escape_string($connexio, $correu);
+    $sql = "SELECT passwd FROM Usuaris WHERE LOWER(correu) = LOWER('$correuEscapat')";
     $resultat = mysqli_query($connexio, $sql);
 
     if ($resultat && mysqli_num_rows($resultat) > 0) {
         $row = mysqli_fetch_assoc($resultat);
-        return $row['passwd'] === $passwd;
+        // password_verify compara la contrasenya en pla amb el hash emmagatzemat
+        return password_verify($passwd, $row['passwd']);
     } else {
         return false;
     }
@@ -135,9 +145,9 @@ function redirigeixLoginValid()
     die();
 }
 function redirigeixLoginCorreu()
-    {
-        header("Location: ?apartat=inici&error=correu");
-        die();
+{
+    header("Location: ?apartat=inici&error=correu");
+    die();
 }
 function redirigeixLoginIncorrecte()
 {
