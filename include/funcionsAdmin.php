@@ -43,9 +43,9 @@ function gestionaUsuaris(): void
         echo "<td>$pass</td>";
 
         if ($email === 'admin@daw.com') {
-            echo '<td><img src="img/admin.jpeg" alt="admin" width="50px" height="50px"></td>';
+            echo '<td><img src="img/admin.png" alt="admin" width="50px" height="50px"></td>';
         } else {
-            echo '<td><a href="include/eliminaUsuari.php?id=' . $id . '"><img src="img/eliminar.jpg" alt="eliminar" width="50px" height="50px"></a></td>';
+            echo '<td><a href="include/eliminaUsuari.php?id=' . $id . '"><img src="img/eliminar.png" alt="eliminar" width="50px" height="50px"></a></td>';
         }
 
         echo '</tr>';
