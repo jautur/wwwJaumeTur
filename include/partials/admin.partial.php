@@ -7,7 +7,21 @@ if (basename($_SERVER['PHP_SELF']) !== 'index.php') {
 include_once __DIR__ . '/../funcionsAdmin.php';
 ?>
 
-<section id="apadrina">
-    <h1 style="color:red;">ADMINISTRACIÓ</h1>
-    <?php gestionaUsuaris(); ?>
+<section id="admin">
+    <div class="contenidorAdmin">
+        <h1 style="color:red;">ADMINISTRACIÓ</h1>
+        <div class="taulaUsuaris">
+            <?php gestionaUsuaris(); ?>
+        </div>
+        <?php if (isset($_GET['mostrarLog']) && $_GET['mostrarLog'] === 'true'): ?>
+            <div class="logUsuaris">
+                <h2>Log d'Accions dels Usuaris</h2>
+                <?php mostraAccionsUsuaris(); ?>
+            </div>
+        <?php endif; ?>
+        <div class="controls">
+            <button><a href="?apartat=admin&mostrarLog=false">Oculta Log</a></button>
+            <button><a href="?apartat=admin&mostrarLog=true">Mostra Log</a></button>
+        </div>
+    </div>
 </section>

@@ -52,26 +52,31 @@ header h1 {
     gap: 12px;
     width: 100%;
     justify-content: center;
-    align-items: stretch; /* ensure child boxes have equal height */
+    align-items: stretch;
+    /* ensure child boxes have equal height */
     flex-wrap: wrap;
 }
 
 .data-css .divdata,
 .data-css .divcss,
 .divlogin {
-    flex: 0 0 48%; /* sit side-by-side when there is space */
+    flex: 0 0 48%;
+    /* sit side-by-side when there is space */
     min-width: 260px;
     padding: 8px 12px;
     margin-top: 12px;
     font-size: 13px;
-    border: 1px solid rgba(0,0,0,0.06);
+    border: 1px solid rgba(0, 0, 0, 0.06);
     border-radius: 8px;
-    background-color: rgba(255,255,255,0.66);
+    background-color: rgba(255, 255, 255, 0.66);
     box-sizing: border-box;
     display: flex;
-    flex-direction: column; /* allow content to stack and stretch */
-    justify-content: center; /* center content vertically */
-    align-items: center; /* center content horizontally */
+    flex-direction: column;
+    /* allow content to stack and stretch */
+    justify-content: center;
+    /* center content vertically */
+    align-items: center;
+    /* center content horizontally */
     text-align: center;
 }
 
@@ -109,7 +114,8 @@ form#formulari-css {
     display: flex;
     align-items: center;
     gap: 6px;
-    flex-wrap: nowrap; /* prefer no wrap; allow parent to expand */
+    flex-wrap: nowrap;
+    /* prefer no wrap; allow parent to expand */
     justify-content: center;
     font-size: 13px;
 }
@@ -126,7 +132,8 @@ form#formulari-css button {
 
 @media (max-width: 520px) {
     form#formulari-css {
-        flex-wrap: wrap; /* allow wrap on very small screens */
+        flex-wrap: wrap;
+        /* allow wrap on very small screens */
         justify-content: flex-start;
     }
 }
@@ -292,7 +299,7 @@ html::before {
     border: 2px solid #4e9a4e;
     border-radius: 15px;
     padding: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     position: relative;
 }
 
@@ -350,4 +357,136 @@ html::before {
 
 .animal button:hover {
     background: #6fbf73;
+}
+
+/* estils per a la pàgina d'administració */
+.contenidorAdmin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.contenidorAdmin .taulaUsuaris {
+    width: 90%;
+    overflow-x: auto;
+}
+
+.contenidorAdmin .logUsuaris {
+    width: 90%;
+    /* mostrar tot el contingut sense barra de desplaçament */
+    overflow: visible;
+    text-align: left;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+}
+
+.contenidorAdmin button a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* botons dins de l'administració: aparença similar als form buttons i alineats horitzontalment */
+.contenidorAdmin .controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contenidorAdmin button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #6fbf73;
+    color: white;
+}
+
+.contenidorAdmin button a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    line-height: inherit;
+}
+
+/* estils per a les entrades del log d'usuaris */
+.accions-usuaris p {
+    margin: 4px 0;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.accio-correcte {
+    background: #46c063;
+}
+
+.accio-incorrecte {
+    background: #db6f16f3;
+}
+
+.accio-eliminat {
+    background: #e71919;
+}
+
+.accio-registre {
+    background: #56b3c4;
+}
+
+.accio-logout {
+    background: #2348ad;
+}
+
+.accio-default {
+    background: #ffffff;
+}
+
+/* -------- TAULA USUARIS (estil definitiu) -------- */
+
+.contenidorAdmin .taulaUsuaris table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* capçalera */
+.contenidorAdmin .taulaUsuaris th {
+    background-color: #b0e6ae;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #000;
+}
+
+/* cel·les (sense color per a deixar veure el tr) */
+.contenidorAdmin .taulaUsuaris td {
+    border: 1px solid #000;
+    padding: 10px;
+    background-color: transparent;
+}
+
+/* columna títol si l'estàs utilitzant */
+.contenidorAdmin .taulaUsuaris .col-titol {
+    background-color: #ccf7c6;
+    font-weight: bold;
+    width: 180px;
+}
+
+/* colors de files */
+.contenidorAdmin .taulaUsuaris tr {
+    background: #ffffff;
+    /* predeterminat blanc */
+}
+
+.contenidorAdmin .taulaUsuaris tr:nth-child(2) {
+    background: #5c5c5c;
+    font-weight: bold;
+    color: white;
 }
