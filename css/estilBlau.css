@@ -398,7 +398,8 @@ html::before {
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
-    background-color: #6fbf73;
+    background-color:#73cee5;
+
     color: white;
 }
 
@@ -454,7 +455,7 @@ html::before {
 
 /* capçalera */
 .contenidorAdmin .taulaUsuaris th {
-    background-color: #87c4ec;
+    background-color: #73cee5;
     padding: 10px;
     text-align: center;
     font-size: 18px;
@@ -470,7 +471,7 @@ html::before {
 
 /* columna títol si l'estàs utilitzant */
 .contenidorAdmin .taulaUsuaris .col-titol {
-    background-color: #ccf7c6;
+    background-color: #73cee5;
     font-weight: bold;
     width: 180px;
 }
