@@ -18,7 +18,7 @@ $paraulesClau = ['animal', 'apadrinar', 'donacio', 'voluntari', 'salvar', 'prote
 if (!empty($email)) {
     if (file_exists(__DIR__ . '/funcions.php')) {
         include_once __DIR__ . '/funcions.php';
-        registreAccionsUsuari('CONTACTE', $email, __DIR__ . '/../log/accionsUsuari.log');
+        registreAccionsUsuari('CONTACTE', $email);
     }
 }
 $cssTaula = 'css/contacte.css';
@@ -69,6 +69,5 @@ $cssTaula = 'css/contacte.css';
     </table>
 
 
-    <?php $retApartat = $_POST['apartat'] ?? 'contacte'; ?>
-    <p><a href="../?apartat=<?= htmlspecialchars($retApartat) ?>">Tornar enrere</a></p>
+    <p><a href="?apartat=contacte">Tornar enrere</a></p>
 </section>

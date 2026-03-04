@@ -2,25 +2,25 @@
 
 /**
  * Registre de navegació per apartats
+ * Escriu una línia numerada en log/navegacio.log amb l'apartat, data i hora.
+ * El fitxer (i el directori) es crea si no existeix, i es fan còpies de seguretat cada 10 línies.
  * @param string $apartat Nom de l'apartat accedit
- * @param string $ruta Ruta completa del fitxer on s'ha d'afegir el registre
  * @return void
  */
-function registreNavegacio(string $apartat, string $ruta): void
+function registreNavegacio(string $apartat): void
 {
-    // Assegurar que la carpeta existeix
+    // ruta fixa al fitxer de navegació
+    $ruta = __DIR__ . '/../log/navegacio.log';
     $dir = dirname($ruta);
     if (!file_exists($dir)) {
         mkdir($dir, 0755, true);
     }
 
-    // Crear carpeta backup dins de log si no existeix
     $backupDir = $dir . DIRECTORY_SEPARATOR . 'backup';
     if (!file_exists($backupDir)) {
         mkdir($backupDir, 0755, true);
     }
 
-    // Comptar línies existents
     $lineesExistents = 0;
     if (file_exists($ruta)) {
         $lines = @file($ruta, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -33,38 +33,66 @@ function registreNavegacio(string $apartat, string $ruta): void
     $now = new DateTime();
     $data = $now->format('d/m/Y');
     $hora = $now->format('H:i:s');
-    $text = sprintf("%d :: Accés a l'apartat %s el dia %s a l'hora %s", $numero, mb_strtoupper($apartat), $data, $hora);
+    // afegim salt de línia al final perquè cada entrada ocupa una línia
+    $text = sprintf("%d :: Accés a l'apartat %s el dia %s a l'hora %s" . PHP_EOL,
+        $numero,
+        mb_strtoupper($apartat),
+        $data,
+        $hora
+    );
 
-    // Si el nombre de línies és múltiple de 10, fer backup
     if ($numero % 10 === 0) {
         $stamp = $now->format('Ymd_His');
         $backupFile = $backupDir . DIRECTORY_SEPARATOR . "backup_{$stamp}.log";
-        // copy whole file
         @copy($ruta, $backupFile);
+    }
+
+    if (!file_exists($ruta)) {
+        @touch($ruta);
+    }
+
+    if (false === @file_put_contents($ruta, $text, FILE_APPEND | LOCK_EX)) {
+        error_log("No s'ha pogut escriure al fitxer de navegació: $ruta");
     }
 }
 
 
 /**
  * Registre d'accions d'usuari
- * @param string $accio Nom de l'acció (REGISTRE o CONTACTE)
- * @param string $usuari Identificador de l'usuari (email)
- * @param string $ruta Ruta completa del fitxer on s'ha d'afegir el registre
+ * Escriu al fitxer /log/accionsUsuari.log una línia amb: usuari, acció, data i hora.
+ * Només s'utilitzen accions com "accés correcte", "accés incorrecte", "usuari eliminat", "registre", "logout", etc.
+ * @param string $accio Acció realitzada per l'usuari
+ * @param string $usuari Email o identificador de l'usuari
  * @return void
  */
-function registreAccionsUsuari(string $accio, string $usuari, string $ruta): void
+function registreAccionsUsuari(string $accio, string $usuari): void
 {
-    // Assegurar que la carpeta existeix
+    $ruta = __DIR__ . '/../log/accionsUsuari.log';
+
     $dir = dirname($ruta);
     if (!file_exists($dir)) {
         mkdir($dir, 0755, true);
     }
 
+    if (!file_exists($ruta)) {
+        @touch($ruta);
+    }
+
     $now = new DateTime();
     $data = $now->format('d/m/Y');
     $hora = $now->format('H:i:s');
-    $text = sprintf("L'usuari %s ha realitzat l'acció %s el dia %s a l'hora %s", $usuari, mb_strtoupper($accio), $data, $hora);
 
+    $text = sprintf(
+        "%s, %s, %s, %s" . PHP_EOL,
+        $usuari,
+        $accio,
+        $data,
+        $hora
+    );
+
+    if (false === @file_put_contents($ruta, $text, FILE_APPEND | LOCK_EX)) {
+        error_log("No s'ha pogut escriure al fitxer de registre: $ruta");
+    }
 }
 function insereixUsuari(string $nom, string $cognoms, string $correu, string $contrasenya): string
 {
@@ -117,16 +145,12 @@ function usuariExisteix(string $correu, $connexio): bool
 
 function passwdCorrecta(string $correu, string $passwd, $connexio): bool
 {
-    // Recuperem el hash emmagatzemat per aquest correu i el comparem amb la contrasenya
-    // enviada pel formulari. No tornem a hash la contrasenya de l'usuari, ja que
-    // password_verify ja ho gestiona internament.
     $correuEscapat = mysqli_real_escape_string($connexio, $correu);
     $sql = "SELECT passwd FROM Usuaris WHERE LOWER(correu) = LOWER('$correuEscapat')";
     $resultat = mysqli_query($connexio, $sql);
 
     if ($resultat && mysqli_num_rows($resultat) > 0) {
         $row = mysqli_fetch_assoc($resultat);
-        // password_verify compara la contrasenya en pla amb el hash emmagatzemat
         return password_verify($passwd, $row['passwd']);
     } else {
         return false;
@@ -207,7 +231,7 @@ function mostraAnimals()
 
         echo "<button>Donació: {$fila['donacio']}€</button>";
 
-        mostraFormulariAnimal($fila['id']);  
+        mostraFormulariAnimal($fila['id']);
 
         echo "</div>";
     }
@@ -221,22 +245,22 @@ function mostraAnimals()
 function mostraFormulariAnimal($id)
 {
     echo '
-    <form id="formAnimal'.$id.'" 
-          name="formAnimal'.$id.'" 
+    <form id="formAnimal' . $id . '" 
+          name="formAnimal' . $id . '" 
           action="index.php?apartat=apadrina" 
           method="POST">
 
         <input type="hidden" 
-               id="idAnimal'.$id.'" 
+               id="idAnimal' . $id . '" 
                name="idAnimal" 
-               value="'.$id.'">
+               value="' . $id . '">
 
         <div>
             <span>
-                <label for="quantitatAnimal'.$id.'">Quantitat:</label>
+                <label for="quantitatAnimal' . $id . '">Quantitat:</label>
             </span>
             <span>
-                <input id="quantitatAnimal'.$id.'" 
+                <input id="quantitatAnimal' . $id . '" 
                        name="quantitatAnimal" 
                        type="number" 
                        min="0" 
@@ -247,7 +271,7 @@ function mostraFormulariAnimal($id)
 
         <div>
             <span>
-                <button id="enviaFormAnimal'.$id.'" 
+                <button id="enviaFormAnimal' . $id . '" 
                         name="envia" 
                         type="submit">
                         Afegeix al carret

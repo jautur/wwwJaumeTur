@@ -17,7 +17,7 @@ if (!empty($_POST['apartat'])) {
     $apartat = $_POST['apartat'];
 }
 
-registreNavegacio($apartat, __DIR__ . '/log/navegacio.log');
+registreNavegacio($apartat);
 
 $ruta = match ($apartat) {
     'inici' => '/include/partials/inici.partial.php',
