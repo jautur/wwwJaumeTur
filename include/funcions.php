@@ -156,6 +156,38 @@ function passwdCorrecta(string $correu, string $passwd, $connexio): bool
     }
 }
 
+function nouAnimal(int $idAnimal, int $quantitat): ?Animal
+{
+    $connexio = mysqli_connect('localhost', 'root', 'root', 'BBDDwwwJaume');
+    if (!$connexio) {
+        return null;
+    }
+
+    $sql = sprintf('SELECT id, nomcomu, nomcient, donacio, descripcio, img FROM Animal WHERE id = %d', $idAnimal);
+    $resultat = mysqli_query($connexio, $sql);
+
+    if (!$resultat || mysqli_num_rows($resultat) === 0) {
+        mysqli_close($connexio);
+        return null;
+    }
+
+    $fila = mysqli_fetch_assoc($resultat);
+    $animal = new Animal(
+        intval($fila['id']),
+        $fila['nomcomu'],
+        $fila['nomcient'],
+        $quantitat,
+        intval($fila['donacio']),
+        $fila['descripcio'],
+        $fila['img']
+    );
+
+    mysqli_free_result($resultat);
+    mysqli_close($connexio);
+
+    return $animal;
+}
+
 function redirigeixErrorContrasenya()
 {
     header("Location: ?apartat=registre&error=contrasenya");

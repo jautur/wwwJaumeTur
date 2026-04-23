@@ -45,7 +45,15 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     padding: 1px;
-    
+    margin: 10px;
+}
+
+#animal-carret-ultim-animal p{
+    border: #000 solid 1px;
+    border-radius: 10px;
+    padding: 5px;
+    gap: 5px;
+    margin: 5px;
 }
 
 /* -------- HEADER, NAV Y FOOTER -------- */

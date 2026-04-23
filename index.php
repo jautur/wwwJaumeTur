@@ -1,16 +1,54 @@
 <?php
 session_start();
 
-if (isset($_POST['envia'])) {
+require_once __DIR__ . '/include/entity/CarretCompra.php';
+require_once __DIR__ . '/include/entity/Animal.php';
+require_once __DIR__ . '/include/funcions.php';
 
-    $_SESSION['idAnimal'] = $_POST['idAnimal'];
-    $_SESSION['quantitatAnimal'] = $_POST['quantitatAnimal'];
-
-    header("Location: index.php?apartat=apadrina");
-    exit();
+$usuariId = $_SESSION['usuari'] ?? session_id();
+$carret = null;
+if (isset($_SESSION['carret'])) {
+    if (is_string($_SESSION['carret'])) {
+        $carret = unserialize($_SESSION['carret'], ['allowed_classes' => true]);
+    } elseif ($_SESSION['carret'] instanceof CarretCompra) {
+        $carret = $_SESSION['carret'];
+    }
 }
 
-require_once __DIR__ . '/include/funcions.php';
+if (!($carret instanceof CarretCompra)) {
+    $carret = new CarretCompra($usuariId);
+    $_SESSION['carret'] = serialize($carret);
+} elseif ($carret->getUsuariId() !== $usuariId) {
+    $carret->setUsuariId($usuariId);
+    $_SESSION['carret'] = serialize($carret);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['envia'])) {
+    $idAnimal = intval($_POST['idAnimal'] ?? 0);
+    $quantitat = intval($_POST['quantitatAnimal'] ?? 0);
+
+    if ($idAnimal > 0 && $quantitat > 0) {
+        $animalExist = $carret->getAnimal($idAnimal);
+
+        if ($animalExist !== null) {
+            $novaQuantitat = intval($animalExist->getCantitat()) + $quantitat;
+            $carret->canviarQuantitatAnimal($idAnimal, $novaQuantitat);
+        } else {
+            $animal = nouAnimal($idAnimal, $quantitat);
+            if ($animal !== null) {
+                $carret->afegirAnimal($animal);
+            }
+        }
+
+        $_SESSION['carret'] = serialize($carret);
+        $_SESSION['ultimAnimalId'] = $idAnimal;
+        $_SESSION['ultimaQuantitatAfegida'] = $quantitat;
+        unset($carret);
+    }
+
+    header('Location: index.php?apartat=apadrina');
+    exit();
+}
 
 $apartat = $_GET['apartat'] ?? 'inici';
 if (!empty($_POST['apartat'])) {

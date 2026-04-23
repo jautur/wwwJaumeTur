@@ -12,8 +12,9 @@ $email = trim($_POST['email'] ?? '');
 $passwd = trim($_POST['passwd'] ?? '');
 
 require_once __DIR__ . '/funcions.php';
+require_once __DIR__ . '/entity/CarretCompra.php';
+require_once __DIR__ . '/entity/Animal.php';
 
-// ja no cal ruta especial, la funció gestiona el fitxer internament
 
 if (empty($email) || empty($passwd)) {
 
@@ -58,12 +59,24 @@ if ($resultat && mysqli_num_rows($resultat) > 0) {
     $_SESSION['usuari'] = $email;
     $_SESSION['nom'] = $row['nom'];
 
+    if (isset($_SESSION['carret'])) {
+        $carret = null;
+        if (is_string($_SESSION['carret'])) {
+            $carret = unserialize($_SESSION['carret'], ['allowed_classes' => true]);
+        } elseif ($_SESSION['carret'] instanceof CarretCompra) {
+            $carret = $_SESSION['carret'];
+        }
+        if ($carret instanceof CarretCompra) {
+            $carret->setUsuariId($email);
+            $_SESSION['carret'] = serialize($carret);
+        }
+    }
+
     registreAccionsUsuari("accés correcte", $email);
 
 } else {
 
     registreAccionsUsuari("accés incorrecte", $email);
-
     mysqli_close($connexio);
     redirigeixLoginIncorrecte();
     exit;

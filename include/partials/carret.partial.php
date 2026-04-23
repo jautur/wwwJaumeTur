@@ -1,33 +1,39 @@
-
 <section id="carret">
     <div id="carretinfo">
         <h3 style="color:red;"> INFO CARRET</h3>
     </div>
-    <?php if (isset($_SESSION['idAnimal']) && isset($_SESSION['quantitatAnimal'])): ?>
+    <?php if (isset($carret) && count($carret->getLlistaAnimals()) > 0): ?>
         <?php
-        $idAnimal = $_SESSION['idAnimal'];
-        $quantitat = $_SESSION['quantitatAnimal'];
-        $connexio = mysqli_connect("localhost", "root", "root", "BBDDwwwJaume");
-        if ($connexio) {
-            $sql = "SELECT nomcomu, donacio FROM Animal WHERE id = '$idAnimal'";
-            $result = mysqli_query($connexio, $sql);
-            if ($result && $row = mysqli_fetch_assoc($result)) {
-                $nom = $row['nomcomu'];
-                $preu = $row['donacio'];
-                $total = $preu * $quantitat;
-                echo "<p>ID Animal: " . htmlspecialchars($idAnimal) . "</p>";
-                echo "<p>Nom: " . htmlspecialchars($nom) . "</p>";
-                echo "<p>Preu: " . htmlspecialchars($preu) . "€</p>";
-                echo "<p>Quantitat: " . htmlspecialchars($quantitat) . "</p>";
-                echo "<p>Total: " . htmlspecialchars($total) . "€</p>";
-            } else {
-                echo "<p>Error obtenint dades de l'animal.</p>";
-            }
-            mysqli_close($connexio);
-        } else {
-            echo "<p>Error de connexió.</p>";
+        $distinctAnimals = count($carret->getLlistaAnimals());
+        $ultimAnimalId = $_SESSION['ultimAnimalId'] ?? null;
+        $ultimaQuantitatAfegida = intval($_SESSION['ultimaQuantitatAfegida'] ?? 0);
+        $ultimAnimal = null;
+
+        if ($ultimAnimalId !== null) {
+            $ultimAnimal = $carret->getAnimal(intval($ultimAnimalId));
         }
+
+        if ($ultimAnimal === null) {
+            $animals = $carret->getLlistaAnimals();
+            $ultimAnimal = end($animals) ?: null;
+        }
+
+        $totalQuantitatActual = $ultimAnimal ? $ultimAnimal->getCantitat() : 0;
         ?>
+
+        <?php if ($ultimAnimal !== null): ?>
+            <div id="animal-carret-ultim-animal">
+                <h4>Últim animal adquirit</h4>
+                <p>ID Animal: <?= htmlspecialchars($ultimAnimal->getId()) ?></p>
+                <p>Nom: <?= htmlspecialchars($ultimAnimal->getNom()) ?></p>
+                <p>Donació per unitat: <?= htmlspecialchars($ultimAnimal->getDonacio()) ?>€</p>
+                <p>Quantitat: <?= htmlspecialchars($ultimaQuantitatAfegida) ?> / <?= htmlspecialchars($totalQuantitatActual) ?>
+                </p>
+                <p>Total: <?= htmlspecialchars($ultimAnimal->getDonacio() * $ultimaQuantitatAfegida) ?>€</p>
+                <p>Animals al carret: <?= htmlspecialchars($distinctAnimals) ?></p>
+            </div>
+
+        <?php endif; ?>
     <?php else: ?>
         <p>No hi ha cap animal al carret.</p>
     <?php endif; ?>

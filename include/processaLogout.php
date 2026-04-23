@@ -11,6 +11,9 @@ if (file_exists(__DIR__ . '/funcions.php')) {
     registreAccionsUsuari('LOGOUT', $usuari);
 }
 
+// eliminar carret i variables relacionades abans de destruir la sessió
+unset($_SESSION['carret'], $_SESSION['ultimAnimalId'], $_SESSION['ultimaQuantitatAfegida']);
+
 // destruir sessió i redirigir
 $_SESSION = [];
 session_destroy();
