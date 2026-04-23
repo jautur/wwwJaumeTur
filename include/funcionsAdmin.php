@@ -92,3 +92,28 @@ function mostraAccionsUsuaris(): void
     }
     echo '</div>';
 }
+
+function mostraNavegacio(): void
+{
+    // cada línia es mostrarà amb classe segons l'acció per tal de poder-li aplicar
+    // un color de fons diferent des de CSS.
+    $ruta = __DIR__ . '/../log/navegacio.log';
+    if (!file_exists($ruta)) {
+        echo '<p style="color:red;">No s\'han trobat accions de navegació.</p>';
+        return;
+    }
+
+    $lines = @file($ruta, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    if (!is_array($lines)) {
+        echo '<p style="color:red;">Error llegint el fitxer de registres.</p>';
+        return;
+    }
+
+    echo '<div class="accions-usuaris">';
+    foreach ($lines as $line) {
+        $cls = 'accio-default';
+        
+        echo '<p class="' . $cls . '">' . htmlspecialchars($line) . '</p>';
+    }
+    echo '</div>';
+}
