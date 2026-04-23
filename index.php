@@ -65,7 +65,11 @@ if ($colorSession === 'Roig') {
 
     <main>
         <?php if (file_exists($path))
-            include $path; ?>
+            include $path;
+        if ($path !== __DIR__ . '/include/partials/admin.partial.php') {
+            include __DIR__ . '/include/partials/carret.partial.php';
+        }
+        ?>
     </main>
 
     <footer>

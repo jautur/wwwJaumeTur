@@ -9,7 +9,7 @@
  */
 function registreNavegacio(string $apartat): void
 {
-    // ruta fixa al fitxer de navegació
+    
     $ruta = __DIR__ . '/../log/navegacio.log';
     $dir = dirname($ruta);
     if (!file_exists($dir)) {
@@ -33,7 +33,6 @@ function registreNavegacio(string $apartat): void
     $now = new DateTime();
     $data = $now->format('d/m/Y');
     $hora = $now->format('H:i:s');
-    // afegim salt de línia al final perquè cada entrada ocupa una línia
     $text = sprintf("%d :: Accés a l'apartat %s el dia %s a l'hora %s" . PHP_EOL,
         $numero,
         mb_strtoupper($apartat),

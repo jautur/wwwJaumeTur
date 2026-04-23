@@ -7,18 +7,45 @@ body {
     text-align: center;
 }
 
-#registre,
-#contacte,
-#proccRegistre,
-#proccContacte,
-#inici,
-#admin,
-#apadrina {
+#admin {
     margin: 40px 30px;
     padding: 20px;
     background: #c0e9f0;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#registre,
+#contacte,
+#proccRegistre,
+#proccContacte,
+#inici,
+#apadrina {
+    margin: 40px 50px 40px 300px;
+    padding: 20px 0px;
+    background: #c0e9f0;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#carret {
+    position: absolute;
+    top: 455px; /* misma altura donde empieza el main */
+    left: 50px;
+    width: 200px;
+    padding: 20px 0;
+    background: #c0e9f0;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#carretinfo {
+    font-size: 14px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 1px;
+    
 }
 
 /* -------- HEADER, NAV Y FOOTER -------- */
