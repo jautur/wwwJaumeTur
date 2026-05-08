@@ -1,8 +1,10 @@
 <?php
 include_once __DIR__ . '/../funcions.php';
+
+$mostrar = $_GET['mostrar'] ?? '';
 ?>
 
 <section id="apadrina">
     <h1>APADRINA</h1>
-    <?php mostraAnimals(); ?>
+    <?php mostraApadrina($mostrar); ?>
 </section>

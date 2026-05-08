@@ -69,6 +69,10 @@ $ruta = match ($apartat) {
     default => '/include/partials/inici.partial.php',
 };
 
+if ($apartat === 'apadrina' && !empty($_POST['mostrar'])) {
+    $ruta = '/include/partials/mostrarCarret.partial.php';
+}
+
 $path = __DIR__ . $ruta;
 
 if (isset($_POST['color'])) {

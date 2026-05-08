@@ -45,4 +45,9 @@
             <h3 style="color:red;"> Inicia Sessió per poder comprar</h3>
         <?php endif; ?>
     </div>
+
+    <div id="botonscarret">
+        <button><a href="index.php?apartat=apadrina&mostrar=carret">Ves al carret</a></button>
+        <button><a href="index.php?apartat=apadrina&mostrar=apadrina">Apadrinal's $</a></button>
+    </div>
 </section>

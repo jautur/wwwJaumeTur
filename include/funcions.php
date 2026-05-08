@@ -312,3 +312,15 @@ function mostraFormulariAnimal($id)
 
     </form>';
 }
+
+function mostraApadrina($mostrar)
+{
+    if ($mostrar === 'carret') {
+        include __DIR__ . '/partials/mostraCarret.partial.php';
+    }else if ($mostrar === 'apadrina') {
+        include __DIR__ . '/partials/mostrarApadrina.partial.php';
+    }
+     else {
+        mostraAnimals();
+    }
+}
