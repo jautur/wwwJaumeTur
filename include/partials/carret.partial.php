@@ -48,6 +48,6 @@
 
     <div id="botonscarret">
         <button><a href="index.php?apartat=apadrina&mostrar=carret">Ves al carret</a></button>
-        <button><a href="index.php?apartat=apadrina&mostrar=apadrina">Apadrinal's $</a></button>
+        <button><a href="index.php?apartat=apadrina&mostrar=apadrina">Apadrina €€</a></button>
     </div>
 </section>

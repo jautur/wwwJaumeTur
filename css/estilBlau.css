@@ -523,3 +523,26 @@ html::before {
     font-weight: bold;
     color: white;
 }
+
+
+.animalCarret {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.animalCarret-id {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+    padding: 20px;
+    margin: auto;
+}
+
+.animalCarret-id .col {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 120px;
+}

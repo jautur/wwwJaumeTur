@@ -1,7 +1,4 @@
 <?php
-// eliminaUsuari.php
-// S'espera un paràmetre GET id amb l'identificador d'usuari a esborrar.
-// Un cop eliminat, redirigeix a la pàgina d'administració.
 
 if (!isset($_GET['id'])) {
     header('Location: ../index.php?apartat=admin');
@@ -10,7 +7,6 @@ if (!isset($_GET['id'])) {
 
 $id = intval($_GET['id']);
 
-// registrar la supressió per l'usuari administrador si hi ha sessió
 $adminEmail = '';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -20,7 +16,6 @@ if (file_exists(__DIR__ . '/funcions.php')) {
     $adminEmail = $_SESSION['usuari'] ?? '';
 }
 
-// recuperem l'email de l'usuari que es va a esborrar
 $usuariEmail = '';
 $connTemp = mysqli_connect("localhost", "root", "root", "BBDDwwwJaume");
 if ($connTemp) {
@@ -48,6 +43,5 @@ if ($conn) {
     mysqli_close($conn);
 }
 
-// després de l'acció tornem a l'administració
 header('Location: ../index.php?apartat=admin');
 exit;
